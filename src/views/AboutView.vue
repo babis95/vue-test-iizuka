@@ -15,6 +15,7 @@
   >
     <p class="text-white">There seems to be no data...</p>
   </div>
+  <!-- All Good -->
   <div class="text-gray-100" v-else>
     <Teleport to="body">
       <transition name="fade" mode="out-in">
@@ -28,8 +29,10 @@
     </Teleport>
     <details-card>
       <template v-slot:title>
-        <!-- <p>{{ getCaseActionDetails.owner.label }}</p> -->
-        <p>{{ getCaseActionDetails.type.label }}</p>
+        <p v-if="getCaseActionDetails.type">
+          {{ getCaseActionDetails.type.label }}
+        </p>
+        <p v-else>No Type Present</p>
       </template>
       <template v-slot:details>
         <p v-if="getCaseActionDetails">
@@ -105,9 +108,11 @@ export default {
       },
     };
   },
+  // Start Page here.
   async mounted() {
     await this.fetchCaseDetails();
   },
+  // Fetch case data based on ID passed in URL
   methods: {
     async fetchCaseDetails() {
       try {
@@ -122,14 +127,8 @@ export default {
         this.isLoading = false;
       }
     },
-    convertTimeLocal(time) {
-      return convertTime(time);
-    },
-    toggleModal() {
-      this.showConfirmationModal = !this.showConfirmationModal;
-    },
+    // Modal confirmation received
     async completeAction() {
-      console.log("indi", this.caseTransitionPayload);
       try {
         this.isLoading = true;
         this.processing = true;
@@ -146,7 +145,15 @@ export default {
         this.processingError = e.message;
       }
     },
+    // Convert date object
+    convertTimeLocal(time) {
+      return convertTime(time);
+    },
+    toggleModal() {
+      this.showConfirmationModal = !this.showConfirmationModal;
+    },
   },
+  // Use VUEX getters to get data about current CaseAction
   computed: {
     getCaseActionDetails() {
       return this.$store.getters["testRequest/getCaseActionDetails"];
@@ -154,6 +161,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .fade-enter-from,
 .fade-leave-to {

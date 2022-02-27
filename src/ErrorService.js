@@ -1,3 +1,4 @@
+// Handle REQUEST Errors
 export function handleError(errorData) {
   if (errorData.response) {
     // client received an error response (5xx, 4xx)
@@ -9,7 +10,7 @@ export function handleError(errorData) {
     throw new Error("Request Serice ERROR");
   } else {
     console.log("Something else Service");
-    throw new Error("Something ELSe ERROR");
+    throw new Error("Something Else ERROR");
     // anything else
   }
 }

@@ -1,4 +1,5 @@
 <template>
+  <!-- Component used to display Case Action details - Uses Slots to put data in various places -->
   <div
     class="max-w-md px-8 py-4 mx-auto mt-16 rounded-lg shadow-lg bg-gray-800"
   >

@@ -1,5 +1,5 @@
 <template>
-  <!-- Delete Product Modal -->
+  <!-- Modal displayed when button to process case action clicked. -->
   <div
     class="overflow-y-auto bg-gray-900 opacity-90 overflow-x-hidden fixed flex right-0 left-0 top-4 z-50 justify-center items-center md:inset-0 h-modal sm:h-full"
     id="popup-modal"

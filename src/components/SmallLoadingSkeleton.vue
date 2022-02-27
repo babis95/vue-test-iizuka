@@ -1,4 +1,5 @@
 <template>
+  <!-- Used when Case Action Details are loading -->
   <div class="bg-gray-800 w-96 mx-auto rounded-2xl shadow-lg">
     <div class="bg-gray-700 h-48 p-3 overflow-hidden animate-pulse"></div>
     <div class="h- p-3">
