@@ -1,30 +1,41 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav class="flex justify-center text-lg mt-3 text-white">
+    <router-link to="/">Home</router-link>
   </nav>
-  <router-view />
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  background-color: rgb(17 24 39);
+}
+a:hover,
+a:active,
+a.router-link-active {
+  color: #f1a80a;
+  border-color: #f1a80a;
+  text-decoration: underline;
 }
 
-nav {
-  padding: 30px;
+.route-enter-from,
+.route-enter-active {
+  animation: fade 0.5s ease-out;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.route-leave-action {
+  animation: fade 0.5s ease-in;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
