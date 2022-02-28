@@ -23,9 +23,9 @@
             <tr
               class="text-md font-semibold tracking-wide text-left text-gray-100 bg-gray-800 uppercase border-b border-gray-600"
             >
-              <th class="px-4 py-3">Owner</th>
+              <th class="px-4 py-3 cursor-pointer" @click="sortID">Owner</th>
               <th class="px-4 py-3">Type</th>
-              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3 cursor-pointer" @click="sortDate">Date</th>
             </tr>
           </thead>
           <tbody class="bg-gray-700">
@@ -103,6 +103,7 @@ export default {
     return {
       isLoading: false,
       error: null,
+      sortType: "ASC",
       requestBody: {
         offset: 0,
         limit: 20,
@@ -139,6 +140,24 @@ export default {
     },
     convertTimeLocal(time) {
       return convertTime(time);
+    },
+    sortID() {
+      if (this.sortType === "DESC") {
+        this.sortType = "ASC";
+        return this.getCaseActions.sort((a, b) => (a.id > b.id ? 1 : -1));
+      } else if (this.sortType === "ASC") {
+        this.sortType = "DESC";
+        return this.getCaseActions.sort((a, b) => (a.id < b.id ? 1 : -1));
+      }
+    },
+    sortDate() {
+      if (this.sortType === "DESC") {
+        this.sortType = "ASC";
+        return this.getCaseActions.sort((a, b) => (a.date > b.date ? 1 : -1));
+      } else if (this.sortType === "ASC") {
+        this.sortType = "DESC";
+        return this.getCaseActions.sort((a, b) => (a.date < b.date ? 1 : -1));
+      }
     },
   },
   computed: {
